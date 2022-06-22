@@ -24,8 +24,17 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/architecture" />
             <option value="$PROJECT_DIR$/build-logic" />
             <option value="$PROJECT_DIR$/build-logic/convention" />
+            <option value="$PROJECT_DIR$/common" />
+            <option value="$PROJECT_DIR$/design-system" />
+            <option value="$PROJECT_DIR$/feed" />
+            <option value="$PROJECT_DIR$/feed/api" />
+            <option value="$PROJECT_DIR$/feed/impl" />
+            <option value="$PROJECT_DIR$/initializer" />
+            <option value="$PROJECT_DIR$/navigation" />
+            <option value="$PROJECT_DIR$/network" />
           </set>
         </option>
       </GradleProjectSettings>

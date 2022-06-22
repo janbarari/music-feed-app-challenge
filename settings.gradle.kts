@@ -6,9 +6,9 @@ enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 pluginManagement {
     includeBuild("build-logic")
     repositories {
-        gradlePluginPortal()
         google()
         mavenCentral()
+        gradlePluginPortal()
     }
 }
 
@@ -21,3 +21,12 @@ dependencyResolutionManagement {
 }
 
 include(":app")
+
+include(":feed:api", ":feed:impl")
+
+include(":initializer")
+include(":navigation")
+include(":design-system")
+include(":network")
+include(":architecture")
+include(":common")

@@ -1,6 +1,3 @@
-plugins {
-    id("io.gitlab.arturbosch.detekt") version "1.20.0-RC2"
-}
 
 buildscript {
 
@@ -10,11 +7,12 @@ buildscript {
     }
 
     dependencies {
-        classpath("com.android.tools.build:gradle:7.2.1")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.31")
+        classpath(libs.android.gradle.plugin)
+        classpath(libs.kotlin.gradle.plugin)
     }
 
 }
+
 
 tasks.register<Delete>("clean") {
     delete(rootProject.buildDir)

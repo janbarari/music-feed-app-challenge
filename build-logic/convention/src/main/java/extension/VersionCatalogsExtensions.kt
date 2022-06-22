@@ -15,9 +15,7 @@ fun VersionCatalog.getVersion(alias: String): String {
 fun VersionCatalog.getBundle(alias: String): List<String> {
     val result = mutableListOf<String>()
     findBundle(alias).get().get().forEach { dep ->
-        result.add(
-            "${dep.module.group}:${dep.module.name}:${dep.versionConstraint.displayName}"
-        )
+        result.add("${dep.module.group}:${dep.module.name}:${dep.versionConstraint.displayName}")
     }
     return result
 }
