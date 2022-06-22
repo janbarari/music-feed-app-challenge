@@ -39,7 +39,6 @@ test-junit = { module = "junit:junit", version.ref = "test-junit" }
 accompanist-navigation = { module = "com.google.accompanist:accompanist-navigation-animation", version.ref = "accompanist" }
 
 compose-ui = { module = "androidx.compose.ui:ui", version.ref = "compose" }
-compose-material3 = "androidx.compose.material3:material3:1.0.0-alpha01"
 compose-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose" }
 compose-material = { module = "androidx.compose.material:material", version.ref = "compose" }
 compose-tool = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }
@@ -59,7 +58,6 @@ android = [
 compose = [
     "compose-ui",
     "compose-material",
-    "compose-material3",
     "compose-tooling-preview",
     "compose-activity",
     "compose-navigation",

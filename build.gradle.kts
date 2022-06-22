@@ -1,3 +1,6 @@
+plugins {
+    id("io.gitlab.arturbosch.detekt") version "1.20.0-RC2"
+}
 
 buildscript {
 
