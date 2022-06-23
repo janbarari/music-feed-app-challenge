@@ -8,4 +8,5 @@ dependencies {
     implementation(libs.hilt.android)
     kapt(libs.hilt.kapt)
     api(libs.accompanist.navigation)
+    implementation(projects.architecture)
 }

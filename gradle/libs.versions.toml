@@ -4,13 +4,14 @@ compose = "1.1.0-beta01"
 kotlin = "1.5.31"
 android-gradle-plugin = "7.2.1"
 androidx-core = "1.7.0"
+androidx-hilt = "1.0.0"
 androidx-appcompat = "1.3.1"
 google-material = "1.4.0"
 test-junit = "4.13.2"
 androidx-test-junit = "1.1.3"
 androidx-test-espresso = "3.4.0"
 coil = "2.1.0"
-hilt = "2.38.1"
+hilt = "2.42"
 retrofit = "2.9.0"
 
 [libraries]
@@ -40,6 +41,7 @@ test-junit = { module = "junit:junit", version.ref = "test-junit" }
 
 accompanist-navigation = { module = "com.google.accompanist:accompanist-navigation-animation", version.ref = "accompanist" }
 accompanist-systemui = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "accompanist" }
+androidx-compose-hilt-navigation = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "androidx-hilt" }
 
 compose-ui = { module = "androidx.compose.ui:ui", version.ref = "compose" }
 compose-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose" }
@@ -64,5 +66,6 @@ compose = [
     "compose-tooling-preview",
     "compose-activity",
     "compose-navigation",
-    "accompanist-navigation"
+    "accompanist-navigation",
+    "androidx-compose-hilt-navigation"
 ]

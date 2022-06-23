@@ -7,9 +7,9 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import com.google.accompanist.navigation.animation.composable
 
+@OptIn(ExperimentalAnimationApi::class)
 interface ComposableFeatureEntry : FeatureEntry {
 
-    @OptIn(ExperimentalAnimationApi::class)
     fun NavGraphBuilder.composable(
         navHostController: NavHostController,
         destinations: Map<Class<out FeatureEntry>, FeatureEntry>

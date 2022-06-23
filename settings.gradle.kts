@@ -24,7 +24,6 @@ include(":app")
 
 include(":feed:api", ":feed:impl")
 
-//include(":initializer")
 include(":navigation")
 include(":design-system")
 include(":network")

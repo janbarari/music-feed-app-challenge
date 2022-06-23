@@ -1,7 +1,10 @@
 plugins {
     id("androidComposeLibrary")
+    id("kotlin-parcelize")
 }
 
 dependencies {
-    implementation(projects.navigation)
+    api(projects.navigation)
+    api(projects.architecture)
+    implementation(libs.moshi.converter)
 }

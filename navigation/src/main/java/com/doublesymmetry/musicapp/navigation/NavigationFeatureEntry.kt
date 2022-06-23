@@ -3,7 +3,7 @@ package com.doublesymmetry.musicapp.navigation
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 
-interface AggregateFeatureEntry: FeatureEntry {
+interface NavigationFeatureEntry: FeatureEntry {
 
     fun NavGraphBuilder.navigation(
         navController: NavController,
