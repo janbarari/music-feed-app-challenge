@@ -6,8 +6,12 @@ import dagger.hilt.android.HiltAndroidApp
 @HiltAndroidApp
 class MusicApp: Application() {
 
-    override fun onCreate() {
-        super.onCreate()
-    }
+//    @Inject
+//    lateinit var applicationInitializer: ApplicationInitializer
+//
+//    override fun onCreate() {
+//        super.onCreate()
+//        applicationInitializer.onCreated(this)
+//    }
 
 }

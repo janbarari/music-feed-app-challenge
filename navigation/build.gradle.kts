@@ -7,6 +7,5 @@ plugins {
 dependencies {
     implementation(libs.hilt.android)
     kapt(libs.hilt.kapt)
-
-    implementation(libs.accompanist.navigation)
+    api(libs.accompanist.navigation)
 }

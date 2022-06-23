@@ -1,5 +1,7 @@
 package com.doublesymmetry.musicapp.navigation
 
-class NavigationDestinations {
+import javax.inject.Inject
 
-}
+class NavigationDestinations @Inject constructor(
+    val routes: Map<Class<out FeatureEntry>, @JvmSuppressWildcards FeatureEntry>
+)
