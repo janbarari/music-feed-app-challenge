@@ -1,5 +1,5 @@
 package com.doublesymmetry.musicapp.architecture
 
-interface EffectHandler<Effect> {
-    suspend fun handleEffect(effect: Effect)
+interface EffectHandler<E> {
+    suspend fun handleEffect(effect: E)
 }

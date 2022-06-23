@@ -17,7 +17,7 @@ import com.doublesymmetry.musicapp.navigation.FeatureEntry
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class FeedEntryImpl @Inject constructor() : FeedEntry<FeedViewModel>() {
+class FeedEntryImpl @Inject constructor() : FeedEntry() {
 
     override fun getEffectHandler(): EffectHandler<FeedEffect> {
         return FeedEffectHandler()

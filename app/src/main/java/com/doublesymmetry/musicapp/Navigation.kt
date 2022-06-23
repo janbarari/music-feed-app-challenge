@@ -24,7 +24,7 @@ fun Navigation() {
     AnimatedNavHost(navHostController, startDestination = feedScreen.featureRoute) {
 
         with(feedScreen) {
-            composable(navHostController, navigationDestinations) {
+            composable<FeedViewModel>(navHostController, navigationDestinations) {
                 hiltViewModel()
             }
         }

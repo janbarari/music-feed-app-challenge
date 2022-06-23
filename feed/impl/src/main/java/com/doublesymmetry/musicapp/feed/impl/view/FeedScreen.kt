@@ -64,7 +64,7 @@ fun FeedScreen(state: FeedState, effect: Flow<FeedEffect>, action: (FeedAction) 
             horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
 
-            items(state.items.size) { _ ->
+            items(30) { _ ->
                 MusicCard(
                     modifier = Modifier
                         .width(184.dp)
