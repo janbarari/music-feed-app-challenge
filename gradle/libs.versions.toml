@@ -18,6 +18,8 @@ kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", v
 android-gradle-plugin = { module = "com.android.tools.build:gradle", version.ref = "android-gradle-plugin" }
 hilt-plugin = { module = "com.google.dagger:hilt-android-gradle-plugin", version.ref = "hilt" }
 
+coroutine = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.3"
+
 kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8", version.ref = "kotlin" }
 
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
