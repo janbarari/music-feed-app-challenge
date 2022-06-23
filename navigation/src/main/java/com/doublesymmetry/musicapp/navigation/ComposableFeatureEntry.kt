@@ -10,7 +10,7 @@ import com.google.accompanist.navigation.animation.composable
 interface ComposableFeatureEntry : FeatureEntry {
 
     @OptIn(ExperimentalAnimationApi::class)
-    fun NavGraphBuilder.tomposable(
+    fun NavGraphBuilder.composable(
         navHostController: NavHostController,
         destinations: Map<Class<out FeatureEntry>, FeatureEntry>
     ) {
