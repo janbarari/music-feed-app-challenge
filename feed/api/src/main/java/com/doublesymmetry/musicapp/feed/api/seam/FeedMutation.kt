@@ -1,7 +1,7 @@
 package com.doublesymmetry.musicapp.feed.api.seam
 
 import com.doublesymmetry.musicapp.architecture.Mutation
-import com.doublesymmetry.musicapp.feed.api.model.Music
+import com.doublesymmetry.musicapp.feed.api.domain.entity.Music
 
 sealed class FeedMutation(
     mutation: Mutation<FeedState>

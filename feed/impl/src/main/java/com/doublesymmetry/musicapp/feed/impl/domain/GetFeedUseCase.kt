@@ -1,7 +1,7 @@
 package com.doublesymmetry.musicapp.feed.impl.domain
 
 import com.doublesymmetry.musicapp.architecture.NoInputUseCase
-import com.doublesymmetry.musicapp.feed.api.model.FeedApiModel
+import com.doublesymmetry.musicapp.feed.impl.service.model.FeedApiModel
 import javax.inject.Inject
 
 class GetFeedUseCase @Inject constructor(

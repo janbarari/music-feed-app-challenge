@@ -1,6 +1,6 @@
 package com.doublesymmetry.musicapp.feed.impl.service
 
-import com.doublesymmetry.musicapp.feed.api.model.FeedApiModel
+import com.doublesymmetry.musicapp.feed.impl.service.model.FeedApiModel
 import retrofit2.http.GET
 
 interface FeedApiService {

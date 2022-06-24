@@ -9,7 +9,6 @@ dependencies {
     kapt(libs.hilt.kapt)
     kapt(libs.hilt.compiler)
 
-    implementation(libs.accompanist.navigation)
-    implementation(projects.architecture)
     implementation(projects.common)
+    api(projects.architecture)
 }
