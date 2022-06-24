@@ -23,9 +23,6 @@ class HostActivity: ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        try {
-            WindowCompat.setDecorFitsSystemWindows(window, false)
-        } catch (_: Exception) { /* safe to ignore */ }
         setContent {
             val systemUiController = rememberSystemUiController()
             CompositionLocalProvider(

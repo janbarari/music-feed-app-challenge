@@ -53,6 +53,9 @@ fun FeedScreen(state: FeedState, action: (FeedAction) -> Unit) {
                 }
             }
         },
+        bottomBar = {
+
+        },
         backgroundColor = Colors.primaryColor
     ) { padding ->
 
@@ -111,7 +114,7 @@ fun FeedScreen(state: FeedState, action: (FeedAction) -> Unit) {
                 .collect {
                     if (it.isEmpty()) {
                         action(FeedAction.SearchCleared)
-                        delay(500)
+                        delay(100)
                         action(FeedAction.LoadFeed)
                     } else {
                         action(FeedAction.SearchFor(it))
@@ -134,7 +137,7 @@ fun TopBar(onSearchTextChanged: (String) -> Unit) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 44.dp, start = 16.dp, bottom = 16.dp, end = 16.dp),
+                .padding(top = 28.dp, start = 16.dp, bottom = 16.dp, end = 16.dp),
             verticalArrangement = Arrangement.Bottom
         ) {
 

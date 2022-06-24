@@ -25,8 +25,11 @@ fun MusicAppTheme(
     ) {
         val systemUiController = LocalSystemUiController.current
         SideEffect {
-            systemUiController.setSystemBarsColor(
-                color = Color.Transparent
+            systemUiController.setStatusBarColor(
+                color = Colors.primaryColor
+            )
+            systemUiController.setNavigationBarColor(
+                color = Colors.primaryColor
             )
         }
         content()
