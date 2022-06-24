@@ -13,7 +13,7 @@ class FeedEffectHandler @Inject constructor(
 
     override suspend fun handleEffect(effect: FeedEffect) {
         when(effect) {
-            is FeedEffect.Reset -> {
+            is FeedEffect.ResetFeed -> {
                 Toast.makeText(context, "List Has Been Reset!", Toast.LENGTH_LONG).show()
             }
         }

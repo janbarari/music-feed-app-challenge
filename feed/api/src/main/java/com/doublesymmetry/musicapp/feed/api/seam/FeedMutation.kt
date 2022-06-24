@@ -7,7 +7,7 @@ sealed class FeedMutation(
     mutation: Mutation<FeedState>
 ) : Mutation<FeedState> by mutation {
 
-    object Loading : FeedMutation(
+    object OnLoadingFeed : FeedMutation(
         {
             it.copy(
                 isLoading = true,
@@ -16,7 +16,7 @@ sealed class FeedMutation(
         }
     )
 
-    data class Loaded(
+    data class OnLoadFeedSuccess(
         val items: List<Music>,
         val page: Int
     ) : FeedMutation(
@@ -31,7 +31,7 @@ sealed class FeedMutation(
         }
     )
 
-    data class OnError(
+    data class OnLoadFeedError(
         val exception: Throwable
     ) : FeedMutation(
         {

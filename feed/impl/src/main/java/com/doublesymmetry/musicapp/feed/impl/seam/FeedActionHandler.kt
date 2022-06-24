@@ -20,19 +20,19 @@ class FeedActionHandler @Inject constructor(
         effect: suspend (FeedEffect) -> Unit
     ): Flow<FeedMutation> = when (action) {
 
-        is FeedAction.Load -> flow {
+        is FeedAction.LoadFeed -> flow {
             try {
                 if (state.page < 5) {
-                    emit(FeedMutation.Loading)
+                    emit(FeedMutation.OnLoadingFeed)
                     emit(
-                        FeedMutation.Loaded(
+                        FeedMutation.OnLoadFeedSuccess(
                             getFeedUseCase.execute().data.sessions,
                             state.page + 1
                         )
                     )
                 }
             } catch (e: Throwable) {
-                emit(FeedMutation.OnError(e))
+                emit(FeedMutation.OnLoadFeedError(e))
             }
 
         }

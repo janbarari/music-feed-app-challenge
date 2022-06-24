@@ -22,7 +22,7 @@ class FeedEntryImpl @Inject constructor(
     override fun getEffectHandler(): EffectHandler<FeedEffect> = feedEffectHandler
 
     override fun getInitializer(backStackEntry: NavBackStackEntry, action: (FeedAction) -> Unit) {
-        action(FeedAction.Load)
+        action(FeedAction.LoadFeed)
     }
 
     @Composable

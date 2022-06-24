@@ -99,7 +99,7 @@ fun FeedScreen(state: FeedState, action: (FeedAction) -> Unit) {
     }
 
     scrollState.whenBottomReached {
-        action(FeedAction.Load)
+        action(FeedAction.LoadFeed)
     }
 
     LaunchedEffect(Unit) {
