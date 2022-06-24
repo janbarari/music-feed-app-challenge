@@ -1,3 +1,5 @@
 package com.doublesymmetry.musicapp.feed.api.seam
 
-sealed class FeedEffect
+sealed class FeedEffect {
+    object Reset: FeedEffect()
+}

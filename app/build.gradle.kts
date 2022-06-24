@@ -47,7 +47,6 @@ android {
 dependencies {
     implementation(libs.bundles.android)
     implementation(libs.bundles.compose)
-
     debugImplementation(libs.compose.tool)
     debugImplementation(libs.compose.test)
 
@@ -59,10 +58,7 @@ dependencies {
     androidTestImplementation(libs.androidx.test.junit)
     androidTestImplementation(libs.androidx.test.espresso)
 
-    api(projects.feed.api)
     implementation(projects.feed.impl)
-
-    api(projects.designSystem)
-    api(projects.navigation)
-
+    implementation(projects.designSystem)
+    implementation(projects.navigation)
 }

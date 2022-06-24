@@ -2,6 +2,7 @@ package com.doublesymmetry.musicapp.design_system.component
 
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
@@ -17,7 +18,7 @@ fun LoadingIndicator(
     modifier: Modifier = Modifier
 ) {
 
-    Row(modifier = Modifier) {
+    Row(modifier = modifier, horizontalArrangement = Arrangement.Center) {
         val infiniteTransition = rememberInfiniteTransition()
 
         val rotateAnim by infiniteTransition.animateFloat(

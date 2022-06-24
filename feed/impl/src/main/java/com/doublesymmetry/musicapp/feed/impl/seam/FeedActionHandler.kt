@@ -12,17 +12,33 @@ import javax.inject.Inject
 
 class FeedActionHandler @Inject constructor(
     private val getFeedUseCase: GetFeedUseCase
-): ActionHandler<FeedState, FeedEffect, FeedAction, FeedMutation> {
+) : ActionHandler<FeedState, FeedEffect, FeedAction, FeedMutation> {
 
     override fun handleAction(
         state: FeedState,
         action: FeedAction,
         effect: suspend (FeedEffect) -> Unit
-    ): Flow<FeedMutation> {
-        return flow {
-            emit(FeedMutation.Loading)
-            emit(FeedMutation.Loaded(getFeedUseCase.execute().data.sessions))
+    ): Flow<FeedMutation> = when (action) {
+
+        is FeedAction.Load -> flow {
+            try {
+                if (state.page < 5) {
+                    emit(FeedMutation.Loading)
+                    emit(
+                        FeedMutation.Loaded(
+                            getFeedUseCase.execute().data.sessions,
+                            state.page + 1
+                        )
+                    )
+                }
+            } catch (e: Throwable) {
+                emit(FeedMutation.OnError(e))
+            }
+
         }
+
+        FeedAction.SearchCleared -> TODO()
+        is FeedAction.SearchFor -> TODO()
     }
 
 }

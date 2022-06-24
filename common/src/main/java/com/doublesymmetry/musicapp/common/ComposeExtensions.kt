@@ -17,7 +17,7 @@ fun LazyGridState.whenBottomReached(
     }
 
     // Convert the state into a cold flow and collect
-    LaunchedEffect(shouldLoadMore) {
+    LaunchedEffect(shouldLoadMore,) {
         snapshotFlow { shouldLoadMore.value }
             .collect {
                 // if should load more, then invoke loadMore()

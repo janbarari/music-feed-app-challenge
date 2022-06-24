@@ -19,6 +19,7 @@ import kotlinx.coroutines.launch
 abstract class ArchitectureFeatureEntry<S : Any, E : Any, A : Any> : FeatureEntry {
 
     abstract fun getEffectHandler(): EffectHandler<E>
+    abstract fun getInitializer(backStackEntry: NavBackStackEntry, action: (A) -> Unit)
 
     fun <VM> NavGraphBuilder.composable(
         navController: NavHostController,
@@ -56,6 +57,7 @@ abstract class ArchitectureFeatureEntry<S : Any, E : Any, A : Any> : FeatureEntr
             val keyboard = LocalSoftwareKeyboardController.current
             LaunchedEffect(Unit) {
                 keyboard?.hide()
+                getInitializer(backStackEntry, action)
                 model.effects.cancellable().collect {
                     getEffectHandler().handleEffect(it)
                 }

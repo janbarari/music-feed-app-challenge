@@ -6,6 +6,6 @@ data class FeedState(
     val isLoading: Boolean = false,
     val items: List<Music> = emptyList(),
     val error: Throwable? = null,
-    val endReached: Boolean = false,
-    val page: Int = 0
+    val isEndReached: Boolean = false,
+    val page: Int = 1
 )

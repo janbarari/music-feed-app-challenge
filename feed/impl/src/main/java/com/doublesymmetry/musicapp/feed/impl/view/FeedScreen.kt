@@ -1,10 +1,10 @@
 package com.doublesymmetry.musicapp.feed.impl.view
 
-import android.util.Log
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.material.Card
@@ -12,6 +12,7 @@ import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
@@ -28,16 +29,14 @@ import com.doublesymmetry.musicapp.design_system.component.SearchBar
 import com.doublesymmetry.musicapp.design_system.theme.Colors
 import com.doublesymmetry.musicapp.design_system.theme.SFProDisplay
 import com.doublesymmetry.musicapp.feed.api.seam.FeedAction
-import com.doublesymmetry.musicapp.feed.api.seam.FeedEffect
 import com.doublesymmetry.musicapp.feed.api.seam.FeedState
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
 
 @Composable
-fun FeedScreen(state: FeedState, effect: Flow<FeedEffect>, action: (FeedAction) -> Unit) {
+fun FeedScreen(state: FeedState, action: (FeedAction) -> Unit) {
     val scrollState = rememberLazyGridState()
     val queryFlow = remember {
         MutableSharedFlow<String>()
@@ -84,9 +83,15 @@ fun FeedScreen(state: FeedState, effect: Flow<FeedEffect>, action: (FeedAction) 
                 )
             }
 
-            item {
+            item(span = { GridItemSpan(2) }) {
                 if (state.isLoading) {
                     LoadingIndicator(modifier = Modifier.fillMaxWidth())
+                }
+            }
+
+            if (state.error != null) {
+                item(span = { GridItemSpan(2) }) {
+                    Text(text = state.error?.message.toString())
                 }
             }
 
@@ -94,15 +99,16 @@ fun FeedScreen(state: FeedState, effect: Flow<FeedEffect>, action: (FeedAction) 
     }
 
     scrollState.whenBottomReached {
-        if (!state.endReached) {
-            action(FeedAction.Load(state.page))
-        }
+        action(FeedAction.Load)
+    }
+
+    LaunchedEffect(Unit) {
         coroutineScope.launch {
             queryFlow
                 .debounce(300)
                 .distinctUntilChanged()
                 .collect {
-                    Log.e("Err8", it)
+                    action(FeedAction.SearchFor(it))
                 }
         }
     }
