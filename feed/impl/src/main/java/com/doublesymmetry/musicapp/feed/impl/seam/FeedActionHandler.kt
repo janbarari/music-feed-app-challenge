@@ -22,7 +22,7 @@ class FeedActionHandler @Inject constructor(
 
         is FeedAction.LoadFeed -> flow {
             try {
-                if (state.page < 5) {
+                if (!state.isEndReached) {
                     emit(FeedMutation.OnLoadingFeed)
                     emit(
                         FeedMutation.OnLoadFeedSuccess(
@@ -37,8 +37,25 @@ class FeedActionHandler @Inject constructor(
 
         }
 
-        FeedAction.SearchCleared -> TODO()
-        is FeedAction.SearchFor -> TODO()
+        FeedAction.SearchCleared -> flow {
+            effect(FeedEffect.ResetFeed)
+            emit(FeedMutation.OnResetFeed)
+        }
+
+        is FeedAction.SearchFor -> flow {
+            try {
+                emit(FeedMutation.OnLoadingFeed)
+
+                val filteredMusics = getFeedUseCase.execute().data.sessions.filter {
+                        it.currentTrack.title.lowercase().contains(action.query.lowercase()) ||
+                                it.genres.toString().lowercase().contains(action.query.lowercase())
+                    }
+                emit(FeedMutation.OnSearchResult(filteredMusics))
+            } catch (e: Throwable) {
+                emit(FeedMutation.OnLoadFeedError(e))
+            }
+        }
+
     }
 
 }

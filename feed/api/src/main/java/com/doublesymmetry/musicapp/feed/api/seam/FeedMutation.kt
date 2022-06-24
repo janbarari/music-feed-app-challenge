@@ -42,4 +42,28 @@ sealed class FeedMutation(
         }
     )
 
+    data class OnSearchResult(
+        val result: List<Music>
+    ): FeedMutation(
+        {
+            it.copy(
+                items = result,
+                isEndReached = true,
+                error = null,
+                isLoading = false
+            )
+        }
+    )
+
+    object OnResetFeed: FeedMutation(
+        {
+            it.copy(
+                isEndReached = false,
+                error = null,
+                page = 1,
+                items = emptyList()
+            )
+        }
+    )
+
 }

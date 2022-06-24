@@ -30,6 +30,7 @@ import com.doublesymmetry.musicapp.design_system.theme.Colors
 import com.doublesymmetry.musicapp.design_system.theme.SFProDisplay
 import com.doublesymmetry.musicapp.feed.api.seam.FeedAction
 import com.doublesymmetry.musicapp.feed.api.seam.FeedState
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -108,7 +109,13 @@ fun FeedScreen(state: FeedState, action: (FeedAction) -> Unit) {
                 .debounce(300)
                 .distinctUntilChanged()
                 .collect {
-                    action(FeedAction.SearchFor(it))
+                    if (it.isEmpty()) {
+                        action(FeedAction.SearchCleared)
+                        delay(500)
+                        action(FeedAction.LoadFeed)
+                    } else {
+                        action(FeedAction.SearchFor(it))
+                    }
                 }
         }
     }
