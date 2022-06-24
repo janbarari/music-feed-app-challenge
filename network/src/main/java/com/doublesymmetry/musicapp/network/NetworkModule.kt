@@ -22,6 +22,7 @@ object NetworkModule {
         return "https://mocky.io/v2/"
     }
 
+    @Provides
     @Singleton
     fun provideRetrofit(
         @Named(BASE_URL) baseUrl: String

@@ -14,7 +14,8 @@ import javax.inject.Inject
 @HiltViewModel
 class FeedViewModel @Inject constructor(
     private val feedActionHandler: FeedActionHandler
-) : ViewModel(), Seam<FeedState, FeedEffect, FeedAction, FeedMutation> by handler(
-    feedActionHandler,
-    FeedState()
-)
+) : ViewModel(),
+    Seam<FeedState, FeedEffect, FeedAction, FeedMutation> by handler(
+        feedActionHandler,
+        FeedState()
+    )

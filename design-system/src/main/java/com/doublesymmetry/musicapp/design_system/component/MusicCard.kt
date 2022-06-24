@@ -7,13 +7,16 @@ import androidx.compose.material.Card
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
+import com.doublesymmetry.musicapp.design_system.theme.SFProDisplay
 
 @Composable
 fun MusicCard(
@@ -66,6 +69,8 @@ fun MusicCard(
                             .fillMaxWidth(),
                         text = title,
                         color = Color.White,
+                        fontWeight = FontWeight.SemiBold,
+                        fontFamily = SFProDisplay,
                         maxLines = 1
                     )
                     Text(
@@ -81,7 +86,6 @@ fun MusicCard(
             }
 
         }
-
     }
 
 }

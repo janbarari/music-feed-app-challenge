@@ -6,16 +6,14 @@ plugins {
 }
 
 dependencies {
-    api(projects.common)
-    api(projects.feed.api)
-    api(projects.architecture)
-    api(projects.navigation)
-
     implementation(libs.hilt.android)
     kapt(libs.hilt.kapt)
+    kapt(libs.hilt.compiler)
 
-    implementation(projects.designSystem)
-
-    implementation(libs.retrofit)
-    implementation(libs.moshi.converter)
+    api(projects.common)
+    api(projects.architecture)
+    api(projects.navigation)
+    api(projects.designSystem)
+    api(projects.network)
+    api(projects.feed.api)
 }

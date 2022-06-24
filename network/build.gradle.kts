@@ -7,7 +7,8 @@ plugins {
 dependencies {
     implementation(libs.hilt.android)
     kapt(libs.hilt.kapt)
+    kapt(libs.hilt.compiler)
 
-    implementation(libs.retrofit)
-    implementation(libs.moshi.converter)
+    api(libs.retrofit)
+    api(libs.moshi.converter)
 }

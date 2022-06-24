@@ -16,16 +16,16 @@ import kotlinx.coroutines.flow.cancellable
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalAnimationApi::class, ExperimentalComposeUiApi::class)
-interface MviComposableFeatureEntry<S : Any, E : Any, A : Any> : FeatureEntry {
+abstract class ArchitectureFeatureEntry<S : Any, E : Any, A : Any> : FeatureEntry {
 
-    fun getEffectHandler(): EffectHandler<E>
-    fun getInitializer(backStackEntry: NavBackStackEntry, action: (A) -> Unit)
+    abstract fun getEffectHandler(): EffectHandler<E>
 
     fun <VM> NavGraphBuilder.composable(
         navController: NavHostController,
         destinations: Map<Class<out FeatureEntry>, FeatureEntry>,
-        createModel: @Composable () -> VM
+        viewModel: @Composable () -> VM
     ) where VM : ViewModel, VM : Seam<S, E, A, *> {
+
         composable(
             route = featureRoute,
             arguments = arguments,
@@ -34,7 +34,7 @@ interface MviComposableFeatureEntry<S : Any, E : Any, A : Any> : FeatureEntry {
             exitTransition = exitTransition
         ) { backStackEntry ->
 
-            val model = createModel()
+            val model = viewModel()
             val scope = rememberCoroutineScope()
 
             val action: (A) -> Unit = {
@@ -56,7 +56,6 @@ interface MviComposableFeatureEntry<S : Any, E : Any, A : Any> : FeatureEntry {
             val keyboard = LocalSoftwareKeyboardController.current
             LaunchedEffect(Unit) {
                 keyboard?.hide()
-                getInitializer(backStackEntry, action)
                 model.effects.cancellable().collect {
                     getEffectHandler().handleEffect(it)
                 }
@@ -65,7 +64,7 @@ interface MviComposableFeatureEntry<S : Any, E : Any, A : Any> : FeatureEntry {
     }
 
     @Composable
-    fun NavGraphBuilder.Composable(
+    abstract fun NavGraphBuilder.Composable(
         navController: NavHostController,
         destinations: Map<Class<out FeatureEntry>, FeatureEntry>,
         backStackEntry: NavBackStackEntry,

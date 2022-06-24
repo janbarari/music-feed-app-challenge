@@ -6,32 +6,32 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class FeedApiModel(
-    @Json(name = "data")
+    @field:Json(name = "data")
     val data: Data
 ): Parcelable
 
 @Parcelize
 data class Data(
-    @Json(name = "sessions")
+    @field:Json(name = "sessions")
     val sessions: List<Music>
 ): Parcelable
 
 @Parcelize
 data class Music(
-    @Json(name = "name")
+    @field:Json(name = "name")
     val name: String,
-    @Json(name = "listener_count")
+    @field:Json(name = "listener_count")
     val listenerCount: Int,
-    @Json(name = "genres")
+    @field:Json(name = "genres")
     val genres: List<String>,
-    @Json(name = "current_track")
+    @field:Json(name = "current_track")
     val currentTrack: CurrentTrack
 ): Parcelable
 
 @Parcelize
 data class CurrentTrack(
-    @Json(name = "title")
+    @field:Json(name = "title")
     val title: String,
-    @Json(name = "artwork_url")
+    @field:Json(name = "artwork_url")
     val artworkUrl: String
 ): Parcelable

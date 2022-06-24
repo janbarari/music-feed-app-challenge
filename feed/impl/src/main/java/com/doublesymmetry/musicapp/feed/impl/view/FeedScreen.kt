@@ -20,6 +20,7 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.doublesymmetry.musicapp.common.toStr
 import com.doublesymmetry.musicapp.common.whenBottomReached
 import com.doublesymmetry.musicapp.design_system.component.LoadingIndicator
 import com.doublesymmetry.musicapp.design_system.component.MusicCard
@@ -58,13 +59,14 @@ fun FeedScreen(state: FeedState, effect: Flow<FeedEffect>, action: (FeedAction) 
         LazyVerticalGrid(
             modifier = Modifier.padding(padding),
             columns = GridCells.Fixed(2),
-            contentPadding = PaddingValues(16.dp),
+            contentPadding = PaddingValues(top = 16.dp, start = 16.dp, end = 16.dp, bottom = 100.dp),
             state = scrollState,
             verticalArrangement = Arrangement.spacedBy(16.dp),
             horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
 
-            items(30) { _ ->
+            items(state.items.size) { i ->
+                val item = state.items[i]
                 MusicCard(
                     modifier = Modifier
                         .width(184.dp)
@@ -76,9 +78,9 @@ fun FeedScreen(state: FeedState, effect: Flow<FeedEffect>, action: (FeedAction) 
 
                             }
                         ),
-                    title = "",
-                    description = "",
-                    coverUrl = ""
+                    title = item.currentTrack.title,
+                    description = item.genres.toStr(),
+                    coverUrl = item.currentTrack.artworkUrl
                 )
             }
 
@@ -95,8 +97,6 @@ fun FeedScreen(state: FeedState, effect: Flow<FeedEffect>, action: (FeedAction) 
         if (!state.endReached) {
             action(FeedAction.Load(state.page))
         }
-
-        Log.e("Err8", "Initialize")
         coroutineScope.launch {
             queryFlow
                 .debounce(300)
@@ -121,7 +121,7 @@ fun TopBar(onSearchTextChanged: (String) -> Unit) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 24.dp, start = 16.dp, bottom = 16.dp, end = 16.dp),
+                .padding(top = 44.dp, start = 16.dp, bottom = 16.dp, end = 16.dp),
             verticalArrangement = Arrangement.Bottom
         ) {
 

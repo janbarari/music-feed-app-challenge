@@ -5,11 +5,14 @@ import com.doublesymmetry.musicapp.feed.api.seam.FeedAction
 import com.doublesymmetry.musicapp.feed.api.seam.FeedEffect
 import com.doublesymmetry.musicapp.feed.api.seam.FeedMutation
 import com.doublesymmetry.musicapp.feed.api.seam.FeedState
+import com.doublesymmetry.musicapp.feed.impl.domain.GetFeedUseCase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
-class FeedActionHandler @Inject constructor(): ActionHandler<FeedState, FeedEffect, FeedAction, FeedMutation> {
+class FeedActionHandler @Inject constructor(
+    private val getFeedUseCase: GetFeedUseCase
+): ActionHandler<FeedState, FeedEffect, FeedAction, FeedMutation> {
 
     override fun handleAction(
         state: FeedState,
@@ -17,7 +20,8 @@ class FeedActionHandler @Inject constructor(): ActionHandler<FeedState, FeedEffe
         effect: suspend (FeedEffect) -> Unit
     ): Flow<FeedMutation> {
         return flow {
-
+            emit(FeedMutation.Loading)
+            emit(FeedMutation.Loaded(getFeedUseCase.execute().data.sessions))
         }
     }
 
