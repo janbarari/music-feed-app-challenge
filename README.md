@@ -21,7 +21,7 @@ Here are all the technology and third-party libraries that I used in the project
 
 - ### MVI architecture
 
-   Providing an easy-to-use and scalable MVI architecture for Compose & Compose Navigation is a little bit annoying, so I created a complete architectural codebase that created specificly designed for Compose and Compose Navigation that makes it easy and customizable.
+   Providing an easy-to-use and scalable MVI architecture for Compose & Compose Navigation is a little bit annoying, so I created a complete architectural codebase that specificly designed for Compose and Compose Navigation that makes it easy and customizable.
 This architecture has ability to connect feature routes together without any circular dependency issue and build-cache invalidation issue(by using Impl/api)
 Here is the architecture diagram.
 
