@@ -58,7 +58,5 @@ dependencies {
     androidTestImplementation(libs.androidx.test.junit)
     androidTestImplementation(libs.androidx.test.espresso)
 
-    implementation(projects.feed.impl)
-    implementation(projects.designSystem)
-    implementation(projects.navigation)
+    api(projects.feed.impl)
 }

@@ -11,8 +11,6 @@ dependencies {
     kapt(libs.hilt.compiler)
 
     api(projects.common)
-    api(projects.architecture)
-    api(projects.navigation)
     api(projects.designSystem)
     api(projects.network)
     api(projects.feed.api)
