@@ -13,8 +13,8 @@ class AndroidLibraryConventionLibrary : Plugin<Project> {
         project.plugins.apply("org.jetbrains.kotlin.android")
 
         project.extensions.configure<LibraryExtension> {
-            compileSdk = 32
-            defaultConfig.targetSdk = 32
+            compileSdk = 34
+            defaultConfig.targetSdk = 34
             defaultConfig.minSdk = 23
 
             compileOptions {
