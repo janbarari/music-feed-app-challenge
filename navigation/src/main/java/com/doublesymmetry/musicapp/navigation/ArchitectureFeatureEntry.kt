@@ -4,6 +4,7 @@ import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.runtime.*
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavGraphBuilder
@@ -16,16 +17,17 @@ import kotlinx.coroutines.flow.cancellable
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalAnimationApi::class, ExperimentalComposeUiApi::class)
-abstract class ArchitectureFeatureEntry<S : Any, E : Any, A : Any> : FeatureEntry {
+abstract class ArchitectureFeatureEntry<S : Any, E : Any, A : Any, C: ViewModelContract> : FeatureEntry {
 
     abstract fun getEffectHandler(): EffectHandler<E>
     abstract fun getInitializer(backStackEntry: NavBackStackEntry, action: (A) -> Unit)
 
-    fun <VM> NavGraphBuilder.composable(
+    abstract fun getViewContract(): C
+
+    inline fun <reified C> NavGraphBuilder.composable(
         navController: NavHostController,
-        destinations: Map<Class<out FeatureEntry>, FeatureEntry>,
-        viewModel: @Composable () -> VM
-    ) where VM : ViewModel, VM : Seam<S, E, A, *> {
+        destinations: Map<Class<out FeatureEntry>, FeatureEntry>
+    ) where C : ViewModel, C : Seam<S, E, A, *> {
 
         composable(
             route = featureRoute,
@@ -35,7 +37,7 @@ abstract class ArchitectureFeatureEntry<S : Any, E : Any, A : Any> : FeatureEntr
             exitTransition = exitTransition
         ) { backStackEntry ->
 
-            val model = viewModel()
+            val model = getViewContract()
             val scope = rememberCoroutineScope()
 
             val action: (A) -> Unit = {

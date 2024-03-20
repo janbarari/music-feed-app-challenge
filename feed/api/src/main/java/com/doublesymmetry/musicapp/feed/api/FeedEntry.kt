@@ -5,6 +5,6 @@ import com.doublesymmetry.musicapp.feed.api.seam.FeedEffect
 import com.doublesymmetry.musicapp.feed.api.seam.FeedState
 import com.doublesymmetry.musicapp.navigation.ArchitectureFeatureEntry
 
-abstract class FeedEntry: ArchitectureFeatureEntry<FeedState, FeedEffect, FeedAction>() {
+abstract class FeedEntry: ArchitectureFeatureEntry<FeedState, FeedEffect, FeedAction, FeedViewContract>() {
     final override val featureRoute: String get() = "feed"
 }
